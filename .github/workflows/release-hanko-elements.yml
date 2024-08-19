@@ -1,9 +1,7 @@
 name: Release @teamhanko/hanko-elements
 
 on:
-  push:
-    tags:
-      - '@teamhanko/hanko-elements@*'
+  workflow_dispatch:
 
 defaults:
   run:

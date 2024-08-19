@@ -1,9 +1,7 @@
 name: Release @teamhanko/frontend-sdk
 
 on:
-  push:
-    tags:
-      - '@teamhanko/frontend-sdk@*'
+  workflow_dispatch:
 
 defaults:
   run:
