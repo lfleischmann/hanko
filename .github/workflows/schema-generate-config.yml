@@ -29,26 +29,7 @@ jobs:
           go generate ./...
           go run main.go schema generate config
 
-      - name: Delay check
-        run: |
-          OWNER=${{ github.repository_owner }}
-          NAME="$(cut -f2 -d'/' <<< ${{ github.repository }})"
-          HEAD_SHA="${{ github.sha }}"
-          STATUS="in_progress"
-          BASE="/repos/${OWNER}/${NAME}/actions/workflows/schema-generate-import.yml/runs"
-          REQUEST_URL="${BASE}?head_sha=${HEAD_SHA}&status=${STATUS}"
-          DELAY=$(gh api "$REQUEST_URL" --jq 'any(.workflow_runs | length; length > 0)')
-          if [ "$DELAY" = "true" ]; then
-            echo "Import schema generation job in progress, delaying to avoid conflicts"
-            sleep 30s
-          else
-            echo "Import schema generation job not in progress, continuing"
-          fi
-        shell: bash
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Commit and push to repo
+      - name: Commit and and create pull request
         working-directory: ./hanko
         run: |
           git config --local user.email "action@github.com"
@@ -56,8 +37,9 @@ jobs:
           git add .
           if ! git diff-index --quiet HEAD; then
             git commit -m "chore: autogenerate config JSON schema"
-            git pull origin main --rebase
-            git push origin HEAD
+            gh pr create -B main -H ${{ GITHUB_REF }} --title 'Autogenerate config JSON schema' --body 'Created by Github Action'
           else
-            echo "No changes detected, skipping commit and push."
+            echo "No changes detected, skipping commit and pull request creation."
           fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
