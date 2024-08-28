@@ -51,10 +51,6 @@ jobs:
             -r lfleischmann
             -H "chore-autogenerate-config-json-schema"
             -t "chore: Autogenerate config JSON schema"
-            -b 'Created by ${{ github.actor }}.
-
-                Workflow: ${{ github.workflow }}
-                Job ID: ${{ github.job_id }}
-                Run ID: ${{ github.run_id }}'
+            -b 'Created by Github Action'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
