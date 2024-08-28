@@ -12,7 +12,7 @@ import (
 
 // Config is the central configuration type
 type Config struct {
-	// `account` configures settings related to user accounts.
+	// `account` configures settings related to user accounts
 	Account Account `yaml:"account" json:"account,omitempty" koanf:"account" jsonschema:"title=account"`
 	// `audit_log` configures output and storage modalities of audit logs.
 	AuditLog AuditLog `yaml:"audit_log" json:"audit_log,omitempty" koanf:"audit_log" split_words:"true" jsonschema:"title=audit_log"`
