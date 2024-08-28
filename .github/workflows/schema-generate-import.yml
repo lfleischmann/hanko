@@ -37,7 +37,7 @@ jobs:
             git checkout -b "chore-autogenerate-import-json-schema"
             git commit -m "chore: autogenerate user import JSON schema"
             git push origin HEAD
-            gh pr create -B main -H "chore-autogenerate-import-json-schema" -t "Autogenerate user import JSON schema" -b "Created by Github Action" -r lfleischmann
+            gh pr create -B main -H "chore-autogenerate-import-json-schema" -t "chore: autogenerate user import JSON schema" -b "Created by Github Action" -r lfleischmann
           else
             echo "No changes detected, skipping commit and pull request creation."
           fi
