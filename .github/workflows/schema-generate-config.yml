@@ -50,10 +50,11 @@ jobs:
             -B main \
             -r lfleischmann \
             -H "chore-autogenerate-config-json-schema" \
-            -t "chore: Autogenerate config JSON schema" \
-            -b 'Actor: `${{ github.actor }}`
-             Triggering actor: `${{ github.triggering_actor }}`
-             Workflow: `${{ github.workflow }}`
+            -t "chore: autogenerate config JSON schema" \
+            -b 'Ref: `${{ github.ref }}`
+             Actor username: `${{ github.actor }}`
+             Event name: `${{ github.event_name }}`
+             Workflow name: `${{ github.workflow }}`
              Job ID: `${{ github.job }}`
              Run ID: `${{ github.run_id }}`'
         env:
