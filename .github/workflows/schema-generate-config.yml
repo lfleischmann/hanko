@@ -13,6 +13,22 @@ jobs:
   config:
     runs-on: ubuntu-latest
     steps:
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.20'
+
+      - name: Checkout backend
+        uses: actions/checkout@v4
+        with:
+          path: hanko
+
+      - name: Generate config JSON schema
+        working-directory: ./hanko/backend
+        run: |
+          go generate ./...
+          go run main.go schema generate config
+
       - name: Delay check
         run: |
           OWNER=${{ github.repository_owner }}
@@ -31,22 +47,6 @@ jobs:
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Set up Go
-        uses: actions/setup-go@v5
-        with:
-          go-version: '1.20'
-
-      - name: Checkout backend
-        uses: actions/checkout@v4
-        with:
-          path: hanko
-
-      - name: Generate config JSON schema
-        working-directory: ./hanko/backend
-        run: |
-          go generate ./...
-          go run main.go schema generate config
 
       - name: Commit and push to repo
         working-directory: ./hanko
