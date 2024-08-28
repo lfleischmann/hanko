@@ -36,7 +36,7 @@ jobs:
           if ! git diff-index --quiet HEAD; then
             git checkout -b "chore-autogenerate-import-json-schema"
             git commit -m "chore: autogenerate user import JSON schema"
-            gh pr create -B main --title 'Autogenerate user import JSON schema' --body 'Created by Github Action' -r lfleischmann
+            gh pr create -B main --head --title 'Autogenerate user import JSON schema' --body 'Created by Github Action' -r lfleischmann
           else
             echo "No changes detected, skipping commit and pull request creation."
           fi
