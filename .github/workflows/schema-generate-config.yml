@@ -23,8 +23,10 @@ jobs:
           REQUEST_URL="${BASE}?head_sha=${HEAD_SHA}&status=${STATUS}"
           DELAY=$(gh api "$REQUEST_URL" --jq 'any(.workflow_runs | length; length > 0)')
           if [ "$DELAY" = "true" ]; then
-            echo "Import schema generation job in progress, delaying to avoid conflicts";
+            echo "Import schema generation job in progress, delaying to avoid conflicts"
             sleep 30s
+          else
+            echo "Import schema generation job not in progress, continuing"
           fi
         shell: bash
         env:
