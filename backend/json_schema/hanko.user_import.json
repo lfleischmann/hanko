@@ -14,11 +14,12 @@
       "properties": {
         "address": {
           "type": "string",
+          "format": "email",
           "description": "Address Valid email address"
         },
         "is_primary": {
           "type": "boolean",
-          "description": "IsPrimary indicates if this is the primary email of the users. In the Emails array there has to be exactly one primary email."
+          "description": "IsPrimary indicates if this is the primary email of the users. In the Emails array there has to be exactly one primary email"
         },
         "is_verified": {
           "type": "boolean",
@@ -32,6 +33,7 @@
         "is_primary",
         "is_verified"
       ],
+      "title": "ImportEmail",
       "description": "ImportOrExportEmail The import/export format for a user's email"
     },
     "ImportOrExportEntry": {
@@ -62,6 +64,7 @@
       "required": [
         "emails"
       ],
+      "title": "ImportEntry",
       "description": "ImportOrExportEntry represents a user to be imported/export to the Hanko database"
     },
     "ImportOrExportList": {
@@ -69,7 +72,46 @@
         "$ref": "#/$defs/ImportOrExportEntry"
       },
       "type": "array",
-      "description": "ImportOrExportList a list of ImportEntries"
+      "description": "ImportOrExportList a list of ImportEntries",
+      "examples": [
+        [
+          {
+            "user_id": "a9ae6bc8-d829-43de-b672-f50230833877",
+            "emails": [
+              {
+                "address": "test@example.com",
+                "is_primary": true,
+                "is_verified": true
+              },
+              {
+                "address": "test+1@example.com",
+                "is_primary": false,
+                "is_verified": false
+              }
+            ],
+            "created_at": "2024-08-17T12:05:15.651387237Z",
+            "updated_at": "2024-08-17T12:05:15.651387237Z"
+          },
+          {
+            "user_id": "2f0649cf-c71e-48a5-92c3-210addb80281",
+            "emails": [
+              {
+                "address": "test2@example.com",
+                "is_primary": true,
+                "is_verified": true
+              },
+              {
+                "address": "test2+1@example.com",
+                "is_primary": false,
+                "is_verified": false
+              }
+            ],
+            "created_at": "2024-08-17T12:05:15.651387237Z",
+            "updated_at": "2024-08-17T12:05:15.651387237Z"
+          }
+        ]
+      ]
     }
-  }
+  },
+  "title": "User import"
 }
