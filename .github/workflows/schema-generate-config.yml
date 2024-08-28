@@ -36,6 +36,7 @@ jobs:
           git config --local user.name "GitHub Action"
           git add .
           if ! git diff-index --quiet HEAD; then
+            git checkout -b "chore-autogenerate-config-json-schema"
             git commit -m "chore: autogenerate config JSON schema"
             gh pr create -B main -H ${{ github.ref }} --title 'Autogenerate config JSON schema' --body 'Created by Github Action'
           else

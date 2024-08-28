@@ -34,6 +34,7 @@ jobs:
           git config --local user.name "GitHub Action"
           git add .
           if ! git diff-index --quiet HEAD; then
+            git checkout -b "chore-autogenerate-import-json-schema"
             git commit -m "chore: autogenerate user import JSON schema"
             gh pr create -B main -H ${{ github.ref }} --title 'Autogenerate user import JSON schema' --body 'Created by Github Action'
           else
