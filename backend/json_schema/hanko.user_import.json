@@ -15,7 +15,8 @@
         "address": {
           "type": "string",
           "format": "email",
-          "description": "Address Valid email address"
+          "title": "address666",
+          "description": "Address Valid email address."
         },
         "is_primary": {
           "type": "boolean",
