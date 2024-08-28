@@ -144,7 +144,7 @@
         "audit_log": {
           "$ref": "#/$defs/AuditLog",
           "title": "audit_log",
-          "description": "`audit_log` configures output and storage modalities of audit logs."
+          "description": "`audit_log` configures output and storage modalities of audit logs"
         },
         "convert_legacy_config": {
           "type": "boolean",
