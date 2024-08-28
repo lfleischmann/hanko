@@ -29,7 +29,7 @@ jobs:
           go generate ./...
           go run main.go schema generate config
 
-      - name: Commit and and create pull request
+      - name: Commit and and create branch
         working-directory: ./hanko
         run: |
           git config --local user.email "action@github.com"
@@ -39,9 +39,22 @@ jobs:
             git checkout -b "chore-autogenerate-config-json-schema"
             git commit -m "chore: autogenerate config JSON schema"
             git push origin HEAD
-            gh pr create -B main -H "chore-autogenerate-config-json-schema" -t "chore: Autogenerate config JSON schema" -b "Created by Github Action" -r lfleischmann
           else
             echo "No changes detected, skipping commit and pull request creation."
           fi
+
+      - name: Create pull request
+        working-directory: ./hanko
+        run: >
+          gh pr create
+            -B main
+            -r lfleischmann
+            -H "chore-autogenerate-config-json-schema"
+            -t "chore: Autogenerate config JSON schema"
+            -b 'Created by ${{ github.actor }}.
+
+                Workflow: ${{ github.workflow }}
+                Job ID: ${{ github.job_id }}
+                Run ID: ${{ github.run_id }}'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
