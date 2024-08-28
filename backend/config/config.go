@@ -13,7 +13,7 @@ import (
 // Config is the central configuration type
 type Config struct {
 	// `account` configures settings related to user accounts.
-	Account Account `yaml:"account" json:"account,omitempty" koanf:"account" jsonschema:"title=accounts"`
+	Account Account `yaml:"account" json:"account,omitempty" koanf:"account" jsonschema:"title=account"`
 	// `audit_log` configures output and storage modalities of audit logs.
 	AuditLog AuditLog `yaml:"audit_log" json:"audit_log,omitempty" koanf:"audit_log" split_words:"true" jsonschema:"title=audit_log"`
 	// `convert_legacy_config`, if set to `true`, automatically copies the set values of deprecated configuration
@@ -21,7 +21,7 @@ type Config struct {
 	// used.
 	ConvertLegacyConfig bool `yaml:"convert_legacy_config" json:"convert_legacy_config,omitempty" koanf:"convert_legacy_config" split_words:"true" jsonschema:"default=false"`
 	// `database` configures database connection settings.
-	Database Database `yaml:"database" json:"database,omitempty" koanf:"database" jsonschema:"title=database"`
+	Database Database `yaml:"database" json:"database,omitempty" koanf:"database" jsonschema:"title=databases"`
 	// `debug`, if set to `true`, adds additional debugging information to flow API responses.
 	Debug bool `yaml:"debug" json:"debug,omitempty" koanf:"debug" jsonschema:"default=false"`
 	// `email` configures how email addresses of user accounts are acquired and used.
