@@ -45,7 +45,7 @@ jobs:
 
       - name: Create pull request
         working-directory: ./hanko
-        run: >
+        run: |
           gh pr create \
             -B main \
             -r lfleischmann \
