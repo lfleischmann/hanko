@@ -138,13 +138,13 @@
       "properties": {
         "account": {
           "$ref": "#/$defs/Account",
-          "title": "account",
+          "title": "account666",
           "description": "`account` configures settings related to user accounts."
         },
         "audit_log": {
           "$ref": "#/$defs/AuditLog",
           "title": "audit_log",
-          "description": "`audit_log` configures output and storage modalities of audit logs"
+          "description": "`audit_log` configures output and storage modalities of audit logs."
         },
         "convert_legacy_config": {
           "type": "boolean",
