@@ -73,7 +73,7 @@ jobs:
             echo "Config markdown generation job in progress, delaying to avoid conflicts"
             sleep 90s
           else
-            echo "No config markdown generation job not in progress, continuing"
+            echo "No config markdown generation job in progress, continuing"
           fi
         shell: bash
         env:
