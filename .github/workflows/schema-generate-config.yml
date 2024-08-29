@@ -51,8 +51,6 @@ jobs:
              # Additional context
 
              Ref: `${{ github.ref }}`
-             Actor username: `${{ github.actor }}`
-             Event name: `${{ github.event_name }}`
              Workflow name: `${{ github.workflow }}`
              Job ID: `${{ github.job }}`
              Run ID: `${{ github.run_id }}`'
