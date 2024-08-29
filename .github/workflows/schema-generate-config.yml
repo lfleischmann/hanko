@@ -36,7 +36,7 @@ jobs:
           git config --local user.name "GitHub Action"
           git add .
           if ! git diff-index --quiet HEAD; then
-            git checkout -b "chore-autogenerate-config-json-schema"
+            git checkout -b "chore-autogenerate-config-json-schema-${{ github.run_id }}"
             git commit -m "chore: autogenerate config JSON schema"
             git push origin HEAD
           else
@@ -49,9 +49,15 @@ jobs:
           gh pr create \
             -B main \
             -r lfleischmann \
-            -H "chore-autogenerate-config-json-schema" \
+            -H "chore-autogenerate-config-json-schema-${{ github.run_id }}" \
             -t "chore: autogenerate config JSON schema" \
-            -b 'Ref: `${{ github.ref }}`
+            -b '# Description
+
+             Autogenerate config JSON schema. Created by Github Action.
+
+             # Additional context
+
+             Ref: `${{ github.ref }}`
              Actor username: `${{ github.actor }}`
              Event name: `${{ github.event_name }}`
              Workflow name: `${{ github.workflow }}`
