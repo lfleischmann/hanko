@@ -138,7 +138,7 @@
       "properties": {
         "account": {
           "$ref": "#/$defs/Account",
-          "title": "account1234",
+          "title": "accountas",
           "description": "`account` configures settings related to user accounts."
         },
         "audit_log": {
