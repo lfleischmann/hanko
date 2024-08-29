@@ -31,6 +31,7 @@ jobs:
 
       - name: Create pull request
         working-directory: ./hanko
+        continue-on-error: true
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
@@ -39,7 +40,7 @@ jobs:
             git checkout -b "chore-autogenerate-config-json-schema-${{ github.run_id }}"
             git commit -m "chore: autogenerate config JSON schema"
             git push origin HEAD
-            gh pr create \
+            gh prr create \
               -B main \
               -r lfleischmann \
               -H "chore-autogenerate-config-json-schema-${{ github.run_id }}" \
@@ -61,3 +62,14 @@ jobs:
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create pull request
+        if: ${{ failure() }}
+        run: |
+          BRANCH=chore-autogenerate-config-json-schema-${{ github.run_id }}
+          git ls-remote --exit-code --heads git@github.com:lfleischmann/hanko.git refs/heads/$REF
+          if [ $? eq 2 ]; then
+            echo "Deleting branch ..."
+            git push origin --delete $BRANCH
+            echo "Branch deleted successfully"
+          fi
